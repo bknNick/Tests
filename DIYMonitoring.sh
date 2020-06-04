@@ -13,11 +13,6 @@
 ## If no output is returned, then all is working as intended.                                                                                              ##
 #############################################################################################################################################################
 
-##THRESHOLDS IN PERCENTAGES, EDIT HERE!:
-DiscUsageThreshold=70
-InodeUsageThreshold=70
-FreeMemThreshold=10
-
 FSmonitoring(){
 ####### DISC usage monitoring - checks the filesystems, and if any usage issues are detected, provides a list with the largest files.
 
@@ -54,7 +49,6 @@ FSmonitoring(){
         fi
 }
 
-FSmonitoring
 
 MEMmonitoring(){
 ####### Free MEMORY monitoring - checks the memory usage, if above threshold, provides a list with the top memory consuming processes.
@@ -69,7 +63,6 @@ MEMmonitoring(){
                 printf "\n"
         fi
 }
-MEMmonitoring
 
 
 SvcsMonitoring(){
@@ -113,8 +106,18 @@ SvcsMonitoring(){
 
 }
 
-SvcsMonitoring
 
-#SystemCheck(){
-####### This will do a check of the resources and give feedback if anything needs to be maintained etc.
-#}
+#SystemCheck(){ // need to add this
+
+########################################################################CONFIGURATION HERE###############################################################
+
+##THRESHOLDS IN PERCENTAGES
+DiscUsageThreshold=70
+InodeUsageThreshold=70
+FreeMemThreshold=10
+
+
+##ENABLE/DISABLE MONITORING BY COMMENTING OUT SPECIFIC FUNCTIONS HERE:
+FSmonitoring
+MEMmonitoring
+SvcsMonitoring
