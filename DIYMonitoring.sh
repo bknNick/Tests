@@ -21,10 +21,10 @@ FreeMemThreshold=10
 FSmonitoring(){
 ####### DISC usage monitoring - checks the filesystems, and if any usage issues are detected, provides a list with the largest files.
 
-        for fsusage in $(df -h | awk '{print $5}' | grep -vi "use" | cut -d "%" -f 1); do
-                if (( $fsusage >= $DiscUsageThreshold )); then
+        for FSusage in $(df -h | awk '{print $5}' | grep -vi "use" | cut -d "%" -f 1); do
+                if (( $FSusage >= $DiscUsageThreshold )); then
                         printf "\nFS issue detected in the following FS', please review!\n"
-                        echo $(df -h | grep "$fsusage")
+                        echo $(df -h | grep "$FSusage")
                         printf "\nThe largest files can be found below:\n"
                         printf "\n"
                         for DiscUsageFile in $(find / -type f -size +1000000c -exec du -m {} \; 2>/dev/null | sort -n -k 1 | tail -20 | awk {'print ($2)'});
