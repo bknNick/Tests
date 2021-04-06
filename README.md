@@ -1,2 +1,2 @@
 # Projects
-Basically gonna write stuff on the go here idk
+#All scripts are for my own personal use.
