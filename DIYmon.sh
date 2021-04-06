@@ -1,7 +1,7 @@
 #!/bin/bash
 ########################################################################CONFIGURATION HERE###############################################################
-
-. /root/ownscripts/DIYmonitoring/ownmon.lib
+DIYmon.lib="Input the path to the .lib file here"
+. $DIYmon.lib
 
 ##THRESHOLDS IN PERCENTAGES
 DiscUsageThreshold=70
