@@ -8,7 +8,6 @@
 ## Monitoring script, does a check in real time on most monitored resources and provides feedback related to them. This is meant to be run as root until I ##
 ## find a work-around for sudo (as soon as I stop being lazy about it at least).                                                                           ##
 ##                                                                                                                                                         ##
-## Obviously done by Nick D., as these lazy asses wouldn't be bothered with such things -_- (talking to you Steve & George).                               ##
 ##                                                                                                                                                         ##
 ## If no output is returned, then all is working as intended.                                                                                              ##
 #############################################################################################################################################################
@@ -16,7 +15,6 @@
 #############################################################################################################################################################
 ##***************************************************CONFIGURATION LOCATED AT THE BOTTOM OF THE PAGE*******************************************************##
 #############################################################################################################################################################
-
 
 FSmonitoring(){
 ####### DISC usage monitoring - checks the filesystems, and if any usage issues are detected, provides a list with the largest files.
@@ -69,6 +67,22 @@ MEMmonitoring(){
         fi
 }
 
+SWAPmonitoring(){
+##### Same as above but for swap
+
+        local FreeSwap=$(free -m | grep -i "swap" | awk '{print ($4 * 100 / $2)}' | cut -d "." -f 1)
+        if (( $FreeSwap <= $FreeSwapThreshold )); then
+                printf "\n"
+                echo "SWAP issue detected! Free memory is only $FreeSwap%!"
+                printf "\n"
+                printf "The highest memory consuming processes can be found below:\n"
+                #Swap command here
+                printf "\n"
+        fi
+}
+
+#CPUMonitoring
+
 
 SvcsMonitoring(){
 ####### Services monitoring - checks if services are running, if not tries to start them.
@@ -113,16 +127,3 @@ SvcsMonitoring(){
 
 
 #SystemCheck(){ // need to add this
-
-########################################################################CONFIGURATION HERE###############################################################
-
-##THRESHOLDS IN PERCENTAGES
-DiscUsageThreshold=70
-InodeUsageThreshold=70
-FreeMemThreshold=10
-
-
-##ENABLE/DISABLE MONITORING BY COMMENTING OUT SPECIFIC FUNCTIONS HERE:
-FSmonitoring
-MEMmonitoring
-SvcsMonitoring
