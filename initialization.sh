@@ -1,6 +1,6 @@
 #!/bin/bash
 #Initialization script for new servers
-
+#can add python
 
 ##################################### HOW TO USE
 #$0 $ip (example /bin/bash /root/ownscripts/owninit*.sh 192.168.10.123)
