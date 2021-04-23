@@ -54,6 +54,10 @@ echo "installing PHP-MYSQL.."
 ssh root@$host 'yum install php-mysqlnd -y &>/dev/null || echo "PHP-MYSQL has already been installed. Nothing to do."'
 }
 
+PHP-JSON(){
+ssh root@$host 'yum install php-json -y &>/dev/null || echo "PHP-JSON has already been installed. Nothing to do."'
+}
+
 PERL(){
 echo "Installing PERL.."
 ssh root@$host 'yum install perl -y &>/dev/null || echo "PERL has already been installed. Nothing to do."'
@@ -64,6 +68,7 @@ PacketStack(){
 ZIP
 PHP
 PHP-MYSQL
+PHP-JSON
 PERL
 
 }
