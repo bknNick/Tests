@@ -3,7 +3,14 @@
 
 
 ##################################### HOW TO USE
-#$0 $ip (example /bin/bash /root/ownscripts/owninit*.sh 192.168.10.123)
+#Run the script without any options, it will ask for a target server, and then it will do what it does. Currently only usable on new centos versions (and will probably stay that way).
+#installs everything needed to run a WordPress website on a foreign machine.
+#Works on functions, if a packet is not needed, comment it out :D
+#Best used if you have root keys on the target machine, so it doesn't prompt for password each time it does an ssh (which is like A LOT).
+#STILL IN PROGRESS :)
+#Need to add more packet checking
+#Need to add file configuration scripts (like connection strings/etc.)
+
 
 ###########################################################################################################################################################################
 ############################################################# CONFIGURATION LOCATED AT THE BOTTOM OF THE PAGE #############################################################
@@ -55,6 +62,7 @@ ssh root@$host 'yum install php-mysqlnd -y &>/dev/null || echo "PHP-MYSQL has al
 }
 
 PHP-JSON(){
+echo "Installing PHP-JSON"
 ssh root@$host 'yum install php-json -y &>/dev/null || echo "PHP-JSON has already been installed. Nothing to do."'
 }
 
@@ -182,7 +190,7 @@ echo "Wordpress already installed. Nothing to do."
 fi
 }
 
-#Enable/Disable installation times by commenting out the functions below
+#Enable/Disable installation items by commenting out the functions below
 
 PacketStack
 DIYmonInstallation
