@@ -1,12 +1,24 @@
 #!/bin/bash
-
+#=============================================================================================================================================================================
+#
+# FILE NAME - RTPA.sh
+#
+# DESCRIPTION - Does all system monitoring checks needed for a server to be released to production. If you can read the "Proceeding." message after a check, then all is good.
+#
+# USAGE - ./rtpa.sh -check (to run the script). -help (for basic information (just ./rtpa.sh prints this out). 
+#
+# Author - bknNick
+#
+# Note - I am not a programmer. Functionality is what this is built for.
+#
+#=============================================================================================================================================================================
+#
 #Need to add hpasmcli, ssacli, hpacucli
-
 #Need to add error file for summary of the script? (I.E. total number of errors, errors include:)
-
 #App versions are static, so change from here when a change is needed as it's quicker due to them being global variables:
-
 #hpasmxld|hpasmlited|hpasmd are running! Please check! - change this to should be running on physical servers.
+#
+#=============================================================================================================================================================================
 
 ScriptVersion="RTPA.sh v1.02"
 NewestOSVersion="7.9"
