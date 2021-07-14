@@ -5,7 +5,7 @@
 #
 # DESCRIPTION - Does all system monitoring checks needed for a server to be released to production. If you can read the "Proceeding." message after a check, then all is good.
 #
-# USAGE - ./rtpa.sh -check (to run the script). -help (for basic information (just ./rtpa.sh prints this out). 
+# USAGE - ./rtpa.sh [-check] [-help] 
 #
 # Author - bknNick
 #
