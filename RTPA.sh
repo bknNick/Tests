@@ -21,10 +21,11 @@
 #       Need to add error file for summary of the script? (I.E. total number of errors, errors include:)
 #       hpasmxld|hpasmlited|hpasmd are running! Please check! - change this to should be running on physical servers.
 #
+#       Patch note: Changed ovo SSH timeout to 5 seconds instead of default, due to most servers not having direct SSH to OVO.
 #=============================================================================================================================================================================
 
 #App versions are static, so change from here when a change is needed as it's quicker due to them being global variables:
-ScriptVersion="RTPA.sh v1.02"
+ScriptVersion="RTPA.sh v1.03"
 NewestOSVersion="7.9"
 NewestHPOAversion="12.15"
 CBLowestAcceptibleVersion="6.3.4.10012"
@@ -199,7 +200,7 @@ WhiteNoise
 
 }
 
-#Checks if root login is disabled in /etc/ssh/sshd_config... :
+#Checks if root login is disabled in /etc//sshd_config... :
 
 RootLogin(){
 
@@ -254,7 +255,7 @@ OVOCheck(){
                 #Add more host resolutions with elifs if needed for other monitoring servers.
         fi
         printf "\nNRR.PL From OVO server. Use your users ERM password to connect to the OVO server when prompted. \n"
-        ssh $(logname)@$OvoServer "super nrr.pl -cs $(hostname) | grep 'Monitoring Status:'" 2>/dev/null || printf "\nCould not connect to server, most likely there's an isuse with DNS resolution.\n\n"
+        ssh -o ConnectTimeout=5 $(logname)@$OvoServer "super nrr.pl -cs $(hostname) | grep 'Monitoring Status:'" 2>/dev/null || printf "\nCould not connect to server, most likely there's an isuse with DNS resolution.\n\n"
 
         WhiteNoise
 }
