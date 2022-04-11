@@ -1,7 +1,7 @@
 #!/bin/bash
 ########################################################################CONFIGURATION HERE###############################################################
-DIYmon.lib="Input the path to the .lib file here"
-. $DIYmon.lib
+DIYmon_lib=""
+. $DIYmon_lib
 
 ##THRESHOLDS IN PERCENTAGES
 DiscUsageThreshold=70
