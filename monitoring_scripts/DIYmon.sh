@@ -12,5 +12,5 @@ FreeSwapThreshold=50
 ##ENABLE/DISABLE MONITORING BY COMMENTING OUT SPECIFIC FUNCTIONS HERE:
 FSmonitoring
 MEMmonitoring
-SvcsMonitoring
+#SvcsMonitoring
 #SWAPmonitoring
