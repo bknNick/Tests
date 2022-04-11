@@ -19,18 +19,24 @@
 FSmonitoring(){
 ####### DISC usage monitoring - checks the filesystems, and if any usage issues are detected, provides a list with the largest files.
 
-        for FSusage in $(df -h | awk '{print $5}' | grep -vi "use" | cut -d "%" -f 1); do
-                if (( $FSusage >= $DiscUsageThreshold )); then
-                        printf "\nFS issue detected in the following FS', please review!\n"
-                        echo $(df -h | grep "$FSusage")
-                        printf "\nThe largest files can be found below:\n"
-                        printf "\n"
-                        for DiscUsageFile in $(find / -type f -size +1000000c -exec du -m {} \; 2>/dev/null | sort -n -k 1 | tail -20 | awk {'print ($2)'});
-                                do ls -l --block-size=M -a $DiscUsageFile
-                        done
-                        printf "\n"
-                fi
-        done
+fs_usage=$(df -h |grep -v Mounted | awk '{print $6 "," $5}' | cut -d % -f 1)
+
+for i in $fs_usage
+do
+  if [[ $(echo $i | cut -d , -f 2) -ge $DiscUsageThreshold ]]
+  then
+    FS=$(echo $i | cut -d , -f 1)
+    echo
+    echo "Errors noticed in the following FS' ${FS}. The largest files can be found below:"
+    echo
+    for file in $(find $FS -xdev -type f -size +1000000c -exec du -m {} \; 2>/dev/null | sort -n -k 1 | tail -20 | awk {'print ($2)'});
+    do
+      ls -l --block-size=M -a $file
+      echo
+    done
+  fi
+done
+
 
 ######## INODE usage monitoring - same as the above, but prints out a list with the directories using the most inodes.
         for iusage in $(df -i | awk '{print $5}' | grep -vi "use" | cut -d "%" -f 1); do
