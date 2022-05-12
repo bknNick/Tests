@@ -1,6 +1,6 @@
 #!/bin/bash
 ########################################################################CONFIGURATION HERE###############################################################
-DIYmon_lib=""
+DIYmon_lib="$path_to_the_lib_file"
 . $DIYmon_lib
 
 ##THRESHOLDS IN PERCENTAGES
